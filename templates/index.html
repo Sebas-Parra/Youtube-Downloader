@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../static/multimedia/youtube-icon.png" type="icon/png">
+    <title>Reproductor</title>
+</head>
+<body>
+    <section class="download">
+        <h1 class="title">
+            ONLINE VIDEO REPRODUCTOR
+        </h1>
+        <p class="content">
+            Descarga videos de Youtube, Instagram, Facebook, Twitter, y otros sitios web.
+        </p>
+        <div>
+
+        </div>
+        <div class="container-form">
+            <form class="container-input" method="POST" action="/">
+                <select name="quality" required>
+                    <option>Calidad</option>
+                    <option value="144">144p</option>
+                    <option value="240">240p</option>
+                    <option value="360">360p</option>
+                    <option value="480">480p</option>
+                    <option value="720">720p</option>
+                    <option value="1080">1080p</option>
+                </select>
+                <input type="text" id="url" name="url" placeholder="Ingrese el link del video aquí..." required>
+                <button type="submit">Descargar</button>
+            </form>
+        </div>
+        <p class="content">NOTA: Descargar videos de Youtube Music esta restringido</p>
+        <p class="content ultimo">Al usar este sitio web, aceptas nuestros <a href="/terminos">Términos de servicio</a> y te comprometes a no descargar contenido con derechos de autor.</p>
+    </section>
+
+    <div>
+        <h1 class="destacados">Videos destacados</h1>
+    </div>
+
+    <div class="container-videos-destacados">
+        
+    </div>
+
+    <footer>
+        <h2>Contactos de Soporte</h2>
+        <div class="container-social-media">
+            <a href=""><i class="fa-brands fa-facebook fa-2xl"></i> <div>Facebook</div><br></a>
+            <a href=""><i class="fa-brands fa-tiktok fa-2xl"></i><div>Tiktok</div><br></a>
+            <a href=""><i class="fa-brands fa-youtube fa-2xl"></i><br><div>Youtube</div></a>
+            <a href=""><i class="fa-brands fa-twitter fa-2xl"></i><br><div>Twitter</div></a>
+            <a href=""><i class="fa-brands fa-instagram fa-2xl"></i><br><div>Instagram</div></a>
+        </div>
+        <div class="autors">
+            <p>
+                Direccion: Av. Gral. Rumiñahui S/N, Sangolquí 171103 - Universidad de las Fuerzas Armadas ESPE
+            </p>
+            <p>
+                @2024 Yepez-Parra. Todos los derechos de autor
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const destacados = JSON.parse('{{ destacados | tojson | safe }}');
+    
+    // Crear iframes dinámicamente usando el enlace embebido
+    destacados.forEach(video => {
+        const container = document.querySelector('.container-videos-destacados');
+        const iframe = document.createElement('iframe');
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.src = video.embed_link;  // Usa el enlace embebido directamente
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.appendChild(iframe);
+        container.appendChild(videoContainer);
+    });
+    </script>
+    
+    
+    
+
+</body>
+</html>
